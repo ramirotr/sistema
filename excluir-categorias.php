@@ -12,7 +12,7 @@ if ($id) {
     
     // Executa a consulta
     if ($conn->query($sql)) {
-        // Se a exclusão for bem-sucedida, redireciona para a lista de categorias
+        // Se excluiu, redireciona para a lista de categorias
         header("Location: lista-categorias.php");
         exit();
     } else {

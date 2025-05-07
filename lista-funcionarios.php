@@ -4,6 +4,11 @@ include_once './include/logado.php';
 include_once './include/conexao.php';
 include_once './include/header.php';
 
+$sql = "SELECT f.FuncionarioID, f.Nome, c.Nome AS Cargo, s.Nome AS Setor 
+        FROM funcionarios f
+        JOIN cargos c ON f.CargoID = c.CargoID
+        JOIN setor s ON f.SetorID = s.SetorID";
+
 // Consulta ao banco de dados para trazer os funcionários
 $sql = "SELECT * FROM funcionarios"; // A consulta SQL
 $resultado = $conn->query($sql);
@@ -35,10 +40,10 @@ $resultado = $conn->query($sql);
             <td><?php echo $dado['CargoID']; ?></td>
             <td><?php echo $dado['SetorID']; ?></td>
             <td>
-              <!-- Botão Editar - passa o ID do funcionário para editar -->
+              <!-- Botão Editar -->
               <a href="salvar-funcionarios.php?id=<?php echo $dado['FuncionarioID']; ?>" class="btn btn-edit">Editar</a>
               
-              <!-- Botão Excluir - passa o ID do funcionário para excluir -->
+              <!-- Botão Excluir -->
               <a href="excluir-funcionarios.php?id=<?php echo $dado['FuncionarioID']; ?>" class="btn btn-delete">Excluir</a>
             </td>
           </tr>

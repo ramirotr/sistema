@@ -12,7 +12,7 @@ if ($id) {
     
     // Executa a consulta
     if ($conn->query($sql)) {
-        // Se a exclusão for bem-sucedida, redireciona para a lista de produtos
+        // Se excluiu, redireciona para a lista de produtos
         header("Location: lista-produtos.php");
         exit();
     } else {

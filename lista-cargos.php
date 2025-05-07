@@ -27,16 +27,18 @@ $resultado = $conn->query($sql);
           <?php
           // Exibe os dados de cada cargo do banco
           while ($dado = $resultado->fetch_assoc()) {
+           
+
           ?>
           <tr>
             <td><?php echo $dado['CargoID']; ?></td>
             <td><?php echo $dado['Nome']; ?></td>
-            <td><?php echo $dado['TetoSalarial']; ?></td>
+            <td>R$ <?php echo number_format($dado['TetoSalarial'], 2, ',', '.'); ?></td>
             <td>
-              <!-- Botão Editar - passa o ID do cargo para editar -->
+              <!-- Botão Editar -->
               <a href="salvar-cargos.php?id=<?php echo $dado['CargoID']; ?>" class="btn btn-edit">Editar</a>
               
-              <!-- Botão Excluir - passa o ID do cargo para excluir -->
+              <!-- Botão Excluir -->
               <a href="excluir-cargos.php?id=<?php echo $dado['CargoID']; ?>" class="btn btn-delete">Excluir</a>
             </td>
           </tr>

@@ -12,7 +12,7 @@ if ($id) {
     
     // Executa a consulta
     if ($conn->query($sql)) {
-        // Se a exclusão for bem-sucedida, redireciona para a lista de funcionários
+        // Se excluiu, redireciona para a lista de funcionários
         header("Location: lista-funcionarios.php");
         exit();
     } else {

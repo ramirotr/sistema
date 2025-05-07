@@ -17,16 +17,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Verifica se é uma edição ou uma nova inserção
     if ($id) {
-        // Edição - Atualiza a produção
+        // Edição
         $sql = "UPDATE producao SET ProdutoID = '$produto_id', FuncionarioID = '$funcionario_id', DataProducao = '$data_producao', DataEntrega = '$data_entrega' WHERE ProducaoID = $id";
     } else {
-        // Inserção - Cria uma nova produção
+        // Inserção 
         $sql = "INSERT INTO producao (ProdutoID, FuncionarioID, DataProducao, DataEntrega) VALUES ('$produto_id', '$funcionario_id', '$data_producao', '$data_entrega')";
     }
 
     // Executa a consulta
     if ($conn->query($sql)) {
-        // Se a operação for bem-sucedida, redireciona para a lista de produções
+        // Se deu bom, redireciona para a lista de produções
         header("Location: lista-producao.php");
         exit();
     } else {
@@ -54,7 +54,7 @@ $resultado_produtos = $conn->query($sql_produtos);
         <form class="crud-form" method="POST" action="">
           <h2><?php echo $id ? 'Editar Produção' : 'Cadastro de Produção de Produtos'; ?></h2>
 
-          <!-- Campo Funcionário -->
+          <!-- Campo dos Funcionários -->
           <select name="funcionario">
             <option value="">Funcionário</option>
             <?php while ($funcionario = $resultado_funcionarios->fetch_assoc()) { ?>
@@ -64,7 +64,7 @@ $resultado_produtos = $conn->query($sql_produtos);
             <?php } ?>
           </select>
 
-          <!-- Campo Produto -->
+          <!-- Campo dos Produtos -->
           <select name="produto">
             <option value="">Produto</option>
             <?php while ($produto = $resultado_produtos->fetch_assoc()) { ?>
@@ -74,11 +74,11 @@ $resultado_produtos = $conn->query($sql_produtos);
             <?php } ?>
           </select>
 
-          <!-- Campo Data de Produção -->
+          <!-- Campo Datas de Produção -->
           <label for="data_producao">Data de Produção</label>
           <input type="date" name="data_producao" value="<?php echo $id ? $producao['DataProducao'] : ''; ?>">
 
-          <!-- Campo Data da Entrega -->
+          <!-- Campo Datas da Entrega -->
           <label for="data_entrega">Data da Entrega</label>
           <input type="date" name="data_entrega" value="<?php echo $id ? $producao['DataEntrega'] : ''; ?>">
 

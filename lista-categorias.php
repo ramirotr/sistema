@@ -31,10 +31,10 @@ $resultado = $conn->query($sql);
             <td><?php echo $dado['CategoriaID']; ?></td>
             <td><?php echo $dado['Nome']; ?></td>
             <td>
-              <!-- Botão Editar - passa o ID da categoria para editar -->
+              <!-- Botão Editar -->
               <a href="salvar-categorias.php?id=<?php echo $dado['CategoriaID']; ?>" class="btn btn-edit">Editar</a>
               
-              <!-- Botão Excluir - passa o ID da categoria para excluir -->
+              <!-- Botão Excluir -->
               <a href="excluir-categorias.php?id=<?php echo $dado['CategoriaID']; ?>" class="btn btn-delete">Excluir</a>
             </td>
           </tr>

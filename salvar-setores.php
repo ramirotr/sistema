@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Executa a consulta
     if ($conn->query($sql)) {
-        // Se a operação for bem-sucedida, redireciona para a lista de setores
+        // Se deu bom, redireciona para a lista de setores
         header("Location: lista-setores.php");
         exit();
     } else {

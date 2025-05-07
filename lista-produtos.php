@@ -37,10 +37,10 @@ $resultado = $conn->query($sql);
             <td><?php echo $dado['Categoria']; ?></td>
             <td>R$ <?php echo number_format($dado['Preco'], 2, ',', '.'); ?></td>
             <td>
-              <!-- Botão Editar - passa o ID do produto para editar -->
+              <!-- Botão Editar -->
               <a href="salvar-produtos.php?id=<?php echo $dado['ProdutoID']; ?>" class="btn btn-edit">Editar</a>
               
-              <!-- Botão Excluir - passa o ID do produto para excluir -->
+              <!-- Botão Excluir -->
               <a href="excluir-produtos.php?id=<?php echo $dado['ProdutoID']; ?>" class="btn btn-delete">Excluir</a>
             </td>
           </tr>

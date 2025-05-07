@@ -15,16 +15,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Verifica se é uma edição ou uma nova inserção
     if ($id) {
-        // Edição - Atualiza o cargo
+        // Edição 
         $sql = "UPDATE cargos SET Nome = '$nome', TetoSalarial = '$teto_salarial' WHERE CargoID = $id";
     } else {
-        // Inserção - Cria um novo cargo
+        // Inserção 
         $sql = "INSERT INTO cargos (Nome, TetoSalarial) VALUES ('$nome', '$teto_salarial')";
     }
 
     // Executa a consulta
     if ($conn->query($sql)) {
-        // Se a operação for bem-sucedida, redireciona para a lista de cargos
+        // Se deu bom, redireciona para a lista de cargos
         header("Location: lista-cargos.php");
         exit();
     } else {

@@ -12,7 +12,7 @@ if ($id) {
     
     // Executa a consulta
     if ($conn->query($sql)) {
-        // Se a exclusão for bem-sucedida, redireciona para a lista de produções
+        // Se excluiu, redireciona para a lista de produções
         header("Location: lista-producao.php");
         exit();
     } else {

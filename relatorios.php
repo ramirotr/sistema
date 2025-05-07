@@ -1,3 +1,4 @@
+<!--NAO ALTERADO AINDA-->
 <?php 
 // include dos arquivox
 include_once './include/logado.php';

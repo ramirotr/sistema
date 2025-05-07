@@ -34,9 +34,9 @@ $resultado = $conn->query($sql);
             <td><?php echo $dado['Andar']; ?></td>
             <td><?php echo $dado['Cor']; ?></td>
             <td>
-              <!-- Botão Editar - passa o ID do setor para editar -->
+              <!-- Botão Editar -->
               <a href="salvar-setores.php?id=<?php echo $dado['SetorID']; ?>" class="btn btn-edit">Editar</a>
-              <!-- Botão Excluir - passa o ID do setor para excluir -->
+              <!-- Botão Excluir -->
               <a href="excluir-setores.php?id=<?php echo $dado['SetorID']; ?>" class="btn btn-delete">Excluir</a>
             </td>
           </tr>

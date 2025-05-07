@@ -9,7 +9,7 @@ $id = isset($_GET['id']) ? $_GET['id'] : null;
 
 // Se o formulário for enviado, processa a inclusão ou edição
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Captura os dados do formulário
+    // Pega os dados do formulário
     $nome = $_POST['nome'];
     $preco = $_POST['preco'];
     $peso = $_POST['peso'];
@@ -18,16 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Verifica se é uma edição ou uma nova inserção
     if ($id) {
-        // Edição - Atualiza o produto
+        // Edição 
         $sql = "UPDATE produtos SET Nome = '$nome', Preco = '$preco', Peso = '$peso', Descricao = '$descricao', CategoriaID = '$categoria_id' WHERE ProdutoID = $id";
     } else {
-        // Inserção - Cria um novo produto
+        // Inserção 
         $sql = "INSERT INTO produtos (Nome, Preco, Peso, Descricao, CategoriaID) VALUES ('$nome', '$preco', '$peso', '$descricao', '$categoria_id')";
     }
 
     // Executa a consulta
     if ($conn->query($sql)) {
-        // Se a operação for bem-sucedida, redireciona para a lista de produtos
+        // Se deu bom, redireciona para a lista de produtos
         header("Location: lista-produtos.php");
         exit();
     } else {

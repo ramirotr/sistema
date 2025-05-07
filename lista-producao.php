@@ -34,19 +34,20 @@ $resultado = $conn->query($sql);
           <?php
           // Exibe os dados de cada produção do banco
           while ($dado = $resultado->fetch_assoc()) {
+            
           ?>
           <tr>
             <td><?php echo $dado['ProducaoID']; ?></td>
             <td><?php echo $dado['Produto']; ?></td>
             <td><?php echo $dado['Funcionario']; ?></td>
             <td><?php echo $dado['Cliente']; ?></td>
-            <td><?php echo $dado['DataProducao']; ?></td>
-            <td><?php echo $dado['DataEntrega']; ?></td>
+            <td><?php echo date('d/m/Y', strtotime($dado['DataProducao'])); ?></td>
+            <td><?php echo date('d/m/Y', strtotime($dado['DataEntrega'])); ?></td>
             <td>
-              <!-- Botão Editar - passa o ID da produção para editar -->
+              <!-- Botão Editar -->
               <a href="salvar-producao.php?id=<?php echo $dado['ProducaoID']; ?>" class="btn btn-edit">Editar</a>
               
-              <!-- Botão Excluir - passa o ID da produção para excluir -->
+              <!-- Botão Excluir -->
               <a href="excluir-producao.php?id=<?php echo $dado['ProducaoID']; ?>" class="btn btn-delete">Excluir</a>
             </td>
           </tr>

@@ -23,16 +23,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Verifica se é uma edição ou uma nova inserção
     if ($id) {
-        // Edição - Atualiza o funcionário
-        $sql = "UPDATE funcionarios SET Nome = '$nome', DataNascimento = '$data_nascimento', Email = '$email', Salario = '$salario', Sexo = '$sexo', Altura = '$altura', CPF = '$cpf', RG = '$rg', CargoID = '$cargo', SetorID = '$setor' WHERE FuncionarioID = $id";
+        // Edição
+        $sql = "UPDATE funcionarios SET Nome = '$nome', DataNascimento = '$data_nascimento', Email = '$email', 
+        Salario = '$salario', Sexo = '$sexo', Altura = '$altura', CPF = '$cpf', RG = '$rg', CargoID = '$cargo', 
+        SetorID = '$setor' WHERE FuncionarioID = $id";
     } else {
-        // Inserção - Cria um novo funcionário
-        $sql = "INSERT INTO funcionarios (Nome, DataNascimento, Email, Salario, Sexo, Altura, CPF, RG, CargoID, SetorID) VALUES ('$nome', '$data_nascimento', '$email', '$salario', '$sexo', '$altura', '$cpf', '$rg', '$cargo', '$setor')";
+        // Inserção
+        $sql = "INSERT INTO funcionarios (Nome, DataNascimento, Email, Salario, Sexo, Altura, CPF, RG, CargoID, SetorID) 
+        VALUES ('$nome', '$data_nascimento', '$email', '$salario', '$sexo', '$altura', '$cpf', '$rg', '$cargo', '$setor')";
     }
 
     // Executa a consulta
     if ($conn->query($sql)) {
-        // Se a operação for bem-sucedida, redireciona para a lista de funcionários
+        // Se deu bom, redireciona para a lista de funcionários
         header("Location: lista-funcionarios.php");
         exit();
     } else {
@@ -53,7 +56,7 @@ if ($id) {
         <form class="crud-form" method="POST" action="">
           <h2><?php echo $id ? 'Editar Funcionário' : 'Cadastro de Funcionário'; ?></h2>
 
-          <!-- Campos do formulário -->
+          <!-- Campos do formulário dos funcionários -->
           <input type="text" name="nome" placeholder="Nome" value="<?php echo $id ? $funcionario['Nome'] : ''; ?>" required>
           <input type="date" name="data_nascimento" placeholder="Data de Nascimento" value="<?php echo $id ? $funcionario['DataNascimento'] : ''; ?>" required>
           <input type="email" name="email" placeholder="Email" value="<?php echo $id ? $funcionario['Email'] : ''; ?>" required>
@@ -71,14 +74,14 @@ if ($id) {
 
           <select name="cargo" required>
             <option value="">Cargo</option>
-            <!-- Preencher com cargos do banco -->
+            <!-- Pegar cargos do banco -->
             <option value="Cargo A" <?php echo $id && $funcionario['CargoID'] == 'Cargo A' ? 'selected' : ''; ?>>Cargo A</option>
             <option value="Cargo B" <?php echo $id && $funcionario['CargoID'] == 'Cargo B' ? 'selected' : ''; ?>>Cargo B</option>
           </select>
 
           <select name="setor" required>
             <option value="">Setor</option>
-            <!-- Preencher com setores do banco -->
+            <!-- Pegar setores do banco -->
             <option value="Setor A" <?php echo $id && $funcionario['SetorID'] == 'Setor A' ? 'selected' : ''; ?>>Setor A</option>
             <option value="Setor B" <?php echo $id && $funcionario['SetorID'] == 'Setor B' ? 'selected' : ''; ?>>Setor B</option>
           </select>

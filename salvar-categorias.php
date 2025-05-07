@@ -15,16 +15,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Verifica se é uma edição ou uma nova inserção
     if ($id) {
-        // Edição - Atualiza a categoria
+        // Edição 
         $sql = "UPDATE categorias SET Nome = '$nome', Descricao = '$descricao' WHERE CategoriaID = $id";
     } else {
-        // Inserção - Cria uma nova categoria
+        // Inserção 
         $sql = "INSERT INTO categorias (Nome, Descricao) VALUES ('$nome', '$descricao')";
     }
 
     // Executa a consulta
     if ($conn->query($sql)) {
-        // Se a operação for bem-sucedida, redireciona para a lista de categorias
+        // Se a operação deu bom, redireciona para a lista de categorias
         header("Location: lista-categorias.php");
         exit();
     } else {
