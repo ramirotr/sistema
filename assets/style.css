@@ -105,14 +105,14 @@ body {
   }
 
   .btn-add {
-    background-color: #0f9705;
+    background-color: #1c6e16;
   }
   .btn-edit {
-    background-color: #ffc107;
+    background-color: #ca9a08;
   }
 
   .btn-delete {
-    background-color: #dc3545;
+    background-color: #8a232d;
   }
 
   .btn:hover {
