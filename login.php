@@ -1,30 +1,39 @@
-
 <?php
 session_start();
+include_once 'include/conexao.php'; // Inclusão do arquivo de conexão com o banco de dados
 
-// Usuário e senha do administrador
-$admin_user = 'admin'; // Nome do usuário de admin
-$admin_pass = 'senhaadmin'; // Senha do admin (só um exemplo)
-
-// Se já estiver logado, redireciona diretamente para a página desejada
-if (isset($_SESSION['usuario'])) {
-    header("Location: lista-setores.php"); // Pode ser qualquer página que você escolher
-    exit();
-}
-
-// Verifica se o formulário foi enviado
-if (isset($_POST['usuario']) && isset($_POST['senha'])) {
-    $usuario = $_POST['usuario'];
-    $senha = $_POST['senha'];
-
-    // Verifica se o nome de usuário e senha são os do administrador
-    if ($usuario === $admin_user && $senha === $admin_pass) {
-        // Cria a sessão para o admin
-        $_SESSION['usuario'] = $usuario;
-        header("Location: lista-setores.php"); // Redireciona para qualquer página após o login
-        exit();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Receber o login e senha do formulário
+    $usuario = $_POST['usuario'] ?? '';  // Usando operador de coalescência nula
+    $senha = $_POST['senha'] ?? '';      // Usando operador de coalescência nula
+    
+    // Preparar a consulta SQL para buscar o usuário no banco de dados
+    $sql = "SELECT * FROM usuarios WHERE Usuario = ? AND Senha = ?";
+    $stmt = $conn->prepare($sql);
+    
+    // Verificar se o prepare foi bem-sucedido
+    if ($stmt === false) {
+        die('Erro na consulta: ' . $conn->error);
+    }
+    
+    $stmt->bind_param("ss", $usuario, $senha); // Usamos "ss" para definir que tanto o usuário quanto a senha são do tipo string.
+    
+    // Executar a consulta
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    // Se encontrar o usuário e a senha no banco
+    if ($result->num_rows > 0) {
+        // Armazena as informações na sessão
+        $row = $result->fetch_assoc();
+        $_SESSION['usuario'] = $row['Usuario']; // Aqui, você pode salvar outras informações se necessário (como nome, id, etc.)
+        
+        // Redireciona para a página inicial ou a página desejada após o login
+        header("Location: lista-setores.php");
+        exit;
     } else {
-        $erro = "Usuário ou senha inválidos.";
+        // Caso não encontre o usuário, exibe uma mensagem de erro
+        $erro = "Usuário ou senha incorretos!";
     }
 }
 ?>
@@ -37,7 +46,6 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
   <title>Sistema Empresarial</title>
   <link rel="stylesheet" href="./assets/style.css">
   <style>
-    /* Adicionei um estilo básico para o login */
     .login-form {
         width: 300px;
         margin: 0 auto;
@@ -84,23 +92,21 @@ if (isset($_POST['usuario']) && isset($_POST['senha'])) {
   </header>
  
   <main>
-    <!-- Tela de login -->
     <div id="login" class="tela active">
-      <!-- Formulário de login -->
       <form class="login-form" method="POST" action="login.php">
         <h2>Login</h2>
-       
-        <!-- Exibe a mensagem de erro se houver -->
-        <?php if (isset($erro)) { echo "<div class='erro'>$erro</div>"; } ?>
- 
         <input type="text" name="usuario" placeholder="Usuário" required />
         <input type="password" name="senha" placeholder="Senha" required />
         <button type="submit">Entrar</button>
+        <?php
+            if (isset($erro)) {
+                echo "<p style='color:red;'>$erro</p>";
+            }
+        ?>
       </form>
     </div>
   </main>
- 
+
   <script src="./assets/script.js"></script>
 </body>
 </html>
- 

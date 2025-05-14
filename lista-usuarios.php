@@ -1,12 +1,4 @@
 
-
-<?php
-if (!isset($_SESSION['usuario'])) {
-    header("Location: login.php");
-    exit;
-}
-?>
-
 <?php
 include_once './include/logado.php';
 include_once './include/conexao.php';
