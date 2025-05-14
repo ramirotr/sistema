@@ -58,6 +58,6 @@ Ou ajuste o caminho de acordo com o nome da sua pasta.
 
 ## 🙌 Créditos
 
-Projeto desenvolvido para fins acadêmicos por Ramiro Thoma Rockenbach.
-Agradecimento especial ao Senac Distrito Criativo e ao prof. Sandro Costa.
+* Projeto desenvolvido para fins acadêmicos por Ramiro Thoma Rockenbach.
+* Agradecimento especial ao Senac Distrito Criativo e ao prof. Sandro Costa.
 
