@@ -1,3 +1,11 @@
+<?php
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <?php 
 // includes dos arquivos
 include_once './include/logado.php';
