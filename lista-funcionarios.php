@@ -1,18 +1,16 @@
-
-
 <?php 
 // includes dos arquivos
 include_once './include/logado.php';
 include_once './include/conexao.php';
 include_once './include/header.php';
 
+// Consulta ao banco de dados para trazer os funcionários com o nome do cargo e setor
 $sql = "SELECT f.FuncionarioID, f.Nome, c.Nome AS Cargo, s.Nome AS Setor 
         FROM funcionarios f
         JOIN cargos c ON f.CargoID = c.CargoID
         JOIN setor s ON f.SetorID = s.SetorID";
 
-// Consulta ao banco de dados para trazer os funcionários
-$sql = "SELECT * FROM funcionarios"; // A consulta SQL
+// Execução da consulta
 $resultado = $conn->query($sql);
 ?>
 
@@ -39,8 +37,8 @@ $resultado = $conn->query($sql);
           <tr>
             <td><?php echo $dado['FuncionarioID']; ?></td>
             <td><?php echo $dado['Nome']; ?></td>
-            <td><?php echo $dado['CargoID']; ?></td>
-            <td><?php echo $dado['SetorID']; ?></td>
+            <td><?php echo $dado['Cargo']; ?></td> <!-- Mostra o nome do cargo -->
+            <td><?php echo $dado['Setor']; ?></td> <!-- Mostra o nome do setor -->
             <td>
               <!-- Botão Editar -->
               <a href="salvar-funcionarios.php?id=<?php echo $dado['FuncionarioID']; ?>" class="btn btn-edit">Editar</a>
